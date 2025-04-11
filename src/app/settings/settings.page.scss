@@ -1,0 +1,25 @@
+@import "../../theme/variables.scss";
+
+.header{
+    display: flex;
+    background-color: map-get($colors, secondary);
+    font-weight: bold;
+    color: #ffffff;
+    justify-content: center;
+  }
+
+  .container{
+    display: flex;
+    background-color: map-get($colors, light1);
+    padding: 0 15px;
+    min-height: 100vh;
+    align-items: left;
+    flex-direction: column;
+
+  }
+
+  ion-list{
+    display: flex;
+    background-color: map-get($colors, light1);
+    align-items: center;
+  }

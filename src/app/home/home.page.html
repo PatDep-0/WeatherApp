@@ -1,20 +1,162 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <div class="header">
+      <h2>Weather App</h2>
+    </div>
+    <div class="weather-input">
+      <ion-list>
+        <ion-item>
+          <ion-input #cityInputRef type="text" class="city-input" placeholder="Enter city name"></ion-input>
+
+        </ion-item>
+        <ion-item>
+          <ion-button class="searchBtn" (click)="onSearchClick()">Search</ion-button>
+          <ion-button class="locateBtn" (click)="getUserCoordinates()">Current Location</ion-button>
+          <ion-button class="settingBtn">
+            <ion-icon slot="icon-only" name="settings"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content>
+  <div class="container">
+    <div class="weather-data">
+      <div class="weather-center">
+        <div class="card">
+          <div class="current-weather">
+            <div class="details">
+              <p>Now</p>
+              <h2>___&deg;C</h2>
+              <p>______</p>
+            </div>
+            <div class="weather-icon">
+            <img src="https://openweathermap.org/img/wn/10d@2x.png"
+            alt="">
+            </div>
+          </div>
+          <hr>
+          <div class="card-footer">
+            <p>calendar</p>
+            <p>location</p>
+            <div class="current-conditions">
+              <div class="temp-card">
+                <div class="temp-header">
+                  <p>Temparature</p>
+                </div>
+                <div class="temp-items">
+                  <h4 id="tempVal">____&deg;C</h4>
+                </div>
+              </div>
+              <div class="humidity-card">
+                <div class="humi-header">
+                  <p>Humidity</p>
+                </div>
+                <div class="humi-items">
+                  <h4 id="humidityVal">____%</h4>
+                </div>
+              </div>
+              <div class="wind-card">
+                <div class="wind-header">
+                  <p>Wind Speed</p>
+                </div>
+                <div class="wind-items">
+                  <h4 id="windVal">____m/s</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Today at</h2>
+          <div class="hourly-forecast">
+            <div class="card">
+              <p>9 AM</p>
+              <img src="https://openweathermap.org/img/wn/10d@2x.png"
+              alt="">
+              <p>____&deg;C</p>
+            </div>
+            <div class="card">
+              <p>9 AM</p>
+              <img src="https://openweathermap.org/img/wn/10d@2x.png"
+              alt="">
+              <p>____&deg;C</p>
+            </div>
+            <div class="card">
+              <p>9 AM</p>
+              <img src="https://openweathermap.org/img/wn/10d@2x.png"
+              alt="">
+              <p>____&deg;C</p>
+            </div>
+            <div class="card">
+              <p>9 AM</p>
+              <img src="https://openweathermap.org/img/wn/10d@2x.png"
+              alt="">
+              <p>____&deg;C</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2> 5 days Forecast</h2>
+          <div class="day-forecast">
+            <div class="forecast-item">
+              <div class="icon-wrapper">
+                <img src="https://openweathermap.org/img/wn/10d@2x.png"
+                alt="">
+                <span>____&deg;C</span>
+              </div>
+              <p>_____</p>
+              <p>_____</p>
+            </div>
+          </div>
+          <div class="day-forecast">
+            <div class="forecast-item">
+              <div class="icon-wrapper">
+                <img src="https://openweathermap.org/img/wn/10d@2x.png"
+                alt="">
+                <span>____&deg;C</span>
+              </div>
+              <p>_____</p>
+              <p>_____</p>
+            </div>
+          </div>
+          <div class="day-forecast">
+            <div class="forecast-item">
+              <div class="icon-wrapper">
+                <img src="https://openweathermap.org/img/wn/10d@2x.png"
+                alt="">
+                <span>____&deg;C</span>
+              </div>
+              <p>_____</p>
+              <p>_____</p>
+            </div>
+          </div>
+          <div class="day-forecast">
+            <div class="forecast-item">
+              <div class="icon-wrapper">
+                <img src="https://openweathermap.org/img/wn/10d@2x.png"
+                alt="">
+                <span>____&deg;C</span>
+              </div>
+              <p>_____</p>
+              <p>_____</p>
+            </div>
+          </div>
+          <div class="day-forecast">
+            <div class="forecast-item">
+              <div class="icon-wrapper">
+                <img src="https://openweathermap.org/img/wn/10d@2x.png"
+                alt="">
+                <span>____&deg;C</span>
+              </div>
+              <p>_____</p>
+              <p>_____</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>

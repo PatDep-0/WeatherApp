@@ -1,27 +1,136 @@
-#container {
+@import "../../theme/variables.scss";
+
+ion-content{
+  display: flex;
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.header{
+  display: flex;
+  background-color: map-get($colors, secondary);
+  font-weight: bold;
+  color: #ffffff;
+  justify-content: center;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.weather-input{
+  background-color: map-get($colors, secondary);
 }
 
-#container a {
-  text-decoration: none;
+ion-input.city-input{
+  --background: #f7f3f9;
+  --color: #1c1b1e;
+  border-radius: 5px;
+  width: 100%;
+}
+ion-button.searchBtn{
+  --background: #c88ef0;
+  --background-activated: #bd8aee;
+  --color: #ffffff;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 100%;
+}
+
+ion-button.locateBtn{
+  --background: #c88ef0;
+  --background-activated: #bd8aee;
+  --color: #ffffff;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 100%;
+}
+
+ion-button.settingBtn{
+  --background: #c88ef0;
+  --background-activated: #bd8aee;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.container{
+  background-color: map-get($colors, light1);
+  padding: 0 15px;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card{
+  background-color: map-get($colors, primary);
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  & p{
+    font-size: 14px;
+    color:#1c1b1e;
+  }
+  & h2{
+    font-size: 32px;
+    font-weight: 500;
+  }
+}
+
+
+.weather-data{
+  display: flex;
+  gap: 12px;
+  & .weather-center{  
+    & .current-weather{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      & h2{
+        margin: 7px 0;
+      }
+      & p{
+        color: #1c1b1e;
+      }
+    }
+    & .card-footer p{
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    & .forecast-item{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      place-items: center;
+      margin-bottom: 15px;
+      & .icon-wrapper{
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.current-conditions {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.temp-card,
+.humidity-card,
+.wind-card {
+  flex: 1;
+  text-align: center;
+}
+
+.hourly-forecast{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 10px;
+  & .card{
+    text-align: center;
+  }
 }
