@@ -6,15 +6,10 @@
     <div class="weather-input">
       <ion-list>
         <ion-item>
-          <ion-input #cityInputRef type="text" class="city-input" placeholder="Enter city name"></ion-input>
-
+          <ion-input [(ngModel)]="cityName" placeholder="Enter city name"></ion-input>
         </ion-item>
         <ion-item>
           <ion-button class="searchBtn" (click)="onSearchClick()">Search</ion-button>
-          <ion-button class="locateBtn" (click)="getUserCoordinates()">Current Location</ion-button>
-          <ion-button class="settingBtn">
-            <ion-icon slot="icon-only" name="settings"></ion-icon>
-          </ion-button>
         </ion-item>
       </ion-list>
     </div>
@@ -26,36 +21,19 @@
     <div class="weather-data">
       <div class="weather-center">
         <div class="card">
-          <div class="current-weather">
-            <div class="details">
-              <p>Now</p>
-              <h2>___&deg;C</h2>
-              <p>______</p>
-            </div>
-            <div class="weather-icon">
-            <img src="https://openweathermap.org/img/wn/10d@2x.png"
-            alt="">
-            </div>
-          </div>
+          <h4>Now</h4>
+          <h2>{{ temperature }}&deg;C</h2>
+          <img [src]="weatherIcon" alt="Weather Icon">
           <hr>
+          <p class="location-title">{{ locateName }}</p>
           <div class="card-footer">
-            <p>calendar</p>
-            <p>location</p>
             <div class="current-conditions">
-              <div class="temp-card">
-                <div class="temp-header">
-                  <p>Temparature</p>
-                </div>
-                <div class="temp-items">
-                  <h4 id="tempVal">____&deg;C</h4>
-                </div>
-              </div>
               <div class="humidity-card">
                 <div class="humi-header">
                   <p>Humidity</p>
                 </div>
                 <div class="humi-items">
-                  <h4 id="humidityVal">____%</h4>
+                  <h4>{{ humidity }}%</h4>
                 </div>
               </div>
               <div class="wind-card">
@@ -63,100 +41,44 @@
                   <p>Wind Speed</p>
                 </div>
                 <div class="wind-items">
-                  <h4 id="windVal">____m/s</h4>
+                  <h4>{{ windSpeed }}m/s</h4>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="forecast-buttons">
+            <ion-button (click)="showHourlyForecast()">Hourly Forecast</ion-button>
+            <ion-button (click)="showFiveDayForecast()">5-Day Forecast</ion-button>
+          </div>
         </div>
-        <div class="card">
-          <h2>Today at</h2>
-          <div class="hourly-forecast">
-            <div class="card">
-              <p>9 AM</p>
-              <img src="https://openweathermap.org/img/wn/10d@2x.png"
-              alt="">
-              <p>____&deg;C</p>
-            </div>
-            <div class="card">
-              <p>9 AM</p>
-              <img src="https://openweathermap.org/img/wn/10d@2x.png"
-              alt="">
-              <p>____&deg;C</p>
-            </div>
-            <div class="card">
-              <p>9 AM</p>
-              <img src="https://openweathermap.org/img/wn/10d@2x.png"
-              alt="">
-              <p>____&deg;C</p>
-            </div>
-            <div class="card">
-              <p>9 AM</p>
-              <img src="https://openweathermap.org/img/wn/10d@2x.png"
-              alt="">
-              <p>____&deg;C</p>
+
+        <div class="card" *ngIf="isHourlyForecastVisible">
+          <h2 class="hourly-label" *ngIf="hourlyWeather.length > 0">Today At</h2>
+          <div class="hourly-forecast" *ngIf="hourlyWeather.length > 0">
+            <div class="hourly-item" *ngFor="let hour of hourlyWeather">
+              <div class="details">
+                <p>{{ hour.time }}</p>
+                <img [src]="hour.icon" alt="Weather Icon">
+                <p>{{ hour.temp }}&deg;C</p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="card">
-          <h2> 5 days Forecast</h2>
-          <div class="day-forecast">
-            <div class="forecast-item">
-              <div class="icon-wrapper">
-                <img src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="">
-                <span>____&deg;C</span>
-              </div>
-              <p>_____</p>
-              <p>_____</p>
-            </div>
-          </div>
-          <div class="day-forecast">
-            <div class="forecast-item">
-              <div class="icon-wrapper">
-                <img src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="">
-                <span>____&deg;C</span>
-              </div>
-              <p>_____</p>
-              <p>_____</p>
-            </div>
-          </div>
-          <div class="day-forecast">
-            <div class="forecast-item">
-              <div class="icon-wrapper">
-                <img src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="">
-                <span>____&deg;C</span>
-              </div>
-              <p>_____</p>
-              <p>_____</p>
-            </div>
-          </div>
-          <div class="day-forecast">
-            <div class="forecast-item">
-              <div class="icon-wrapper">
-                <img src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="">
-                <span>____&deg;C</span>
-              </div>
-              <p>_____</p>
-              <p>_____</p>
-            </div>
-          </div>
-          <div class="day-forecast">
-            <div class="forecast-item">
-              <div class="icon-wrapper">
-                <img src="https://openweathermap.org/img/wn/10d@2x.png"
-                alt="">
-                <span>____&deg;C</span>
-              </div>
-              <p>_____</p>
-              <p>_____</p>
+
+        <div class="card" *ngIf="isFiveDayForecastVisible">
+          <h2 class="section-label" *ngIf="fiveDayForecast.length > 0">5-Day Forecast</h2>
+          <div class="day-forecast" *ngIf="fiveDayForecast.length > 0">
+            <div class="forecast-item" *ngFor="let day of fiveDayForecast">
+              <p>{{ day.date }}</p>
+              <img [src]="day.icon" alt="Weather Icon" />
+              <p>{{ day.temp }}&deg;C</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 </ion-content>
