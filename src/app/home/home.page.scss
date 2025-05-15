@@ -11,14 +11,14 @@ ion-content{
 
 .header{
   display: flex;
-  background-color: map-get($colors, secondary);
+  background-color: #6365f3;
   font-weight: bold;
   color: #ffffff;
   justify-content: center;
 }
 
 .weather-input{
-  background-color: map-get($colors, secondary);
+  background-color: #6365f3;
 }
 
 ion-input.cityName{
@@ -28,8 +28,8 @@ ion-input.cityName{
   width: 100%;
 }
 ion-button.searchBtn{
-  --background: #c88ef0;
-  --background-activated: #bd8aee;
+  --background: #7593ff;
+  --background-activated: #526ed2;
   --color: #ffffff;
   border-radius: 5px;
   font-weight: bold;
@@ -44,11 +44,11 @@ ion-button.searchBtn{
   align-items: center;
   justify-content: flex-start;
   padding: 15px;
-  background: linear-gradient(135deg, map-get($colors, dark1), map-get($colors, secondary));
+  background: linear-gradient(135deg, map-get($colors, dark1), #6365f3);
 }
 
 .card{
-  background-color: map-get($colors, primary);
+  background-color: #7593ff;
   padding: 15px;
   border-radius: 15px;
   margin-bottom: 20px;
@@ -137,8 +137,8 @@ ion-button.searchBtn{
 }
 
 ion-button {
-  --background: #c88ef0;
-  --background-activated: #bd8aee;
+  --background: #4566dd;
+  --background-activated: #2c46a0;
   --color: #ffffff;
   border-radius: 5px;
   font-weight: bold;
